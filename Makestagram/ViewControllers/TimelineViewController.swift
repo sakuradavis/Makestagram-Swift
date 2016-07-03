@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class TimelineViewController: UIViewController {
     //Add the property definition for photoTakingHelper
     var photoTakingHelper: PhotoTakingHelper?
+    
     
     //Setting the TimelineViewController to be the delegate of the tabBarController.
     override func viewDidLoad() {
@@ -24,10 +26,21 @@ class TimelineViewController: UIViewController {
         
         //As a callback we pass a closure. A closure is basically a function without a name.
         //Trailing closures can be used whenever the last argument of a function or initializer is a closure.
-        photoTakingHelper = PhotoTakingHelper(viewController: self.tabBarController!)
-        { (image: UIImage?) in
-            print("received a callback")
-        }
+        photoTakingHelper = PhotoTakingHelper(viewController: self.tabBarController!, callback: { (image: UIImage?) in
+            if let image = image {
+                
+                //We turn the UIImage into an NSData instance because the PFFile class needs an NSData argument for its initializer. Also, we give it the name "image.jpg".
+                //takes the optional returned from the PFFile constructor, and force unwraps it.
+                let imageData = UIImageJPEGRepresentation(image, 0.8)!
+                //Next we create and save the PFFile.
+                let imageFile = PFFile(name: "image.jpg", data: imageData)!
+                
+                //create a PFObject of type post. We assign the "imageFile" to this post and then save it as well.
+                let post = PFObject(className: "Post")
+                post["imageFile"] = imageFile
+                post.saveInBackground()
+            }
+        })
     }
     
 }
