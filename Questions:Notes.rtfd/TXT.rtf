@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
 {\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green116\blue0;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
 {\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
 {\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid202\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid3}
@@ -10,52 +10,53 @@
 \deftab720
 \pard\tx720\pardeftab720\sl280\partightenfactor0
 
-\f0\fs24 \cf2 TAKING PHOTOS: \
+\f0\fs24 \cf0 TAKING PHOTOS: \
 \pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
-\ls1\ilvl0\cf2 {\listtext	\'95	}Why does Tab Bar Controller Scene not have a class/source code file with code to declare delegations (like other view controllers do)?\
+\ls1\ilvl0\cf0 {\listtext	\'95	}Why does Tab Bar Controller Scene not have a class/source code file with code to declare delegations (like other view controllers do)?\
 \pard\tx720\pardeftab720\sl280\partightenfactor0
-\cf2 \
+\cf0 \
 \pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
-\ls2\ilvl0\cf2 {\listtext	\'95	}TimelineViewController \cf0 line 35 \cf2 \'85image =image? redundant?\
+\ls2\ilvl0\cf0 {\listtext	\'95	}TimelineViewController line 35 \'85image =image? redundant?\
 \pard\tx720\pardeftab720\sl280\partightenfactor0
-\cf2 \
+\cf0 \
 \pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
 \ls3\ilvl0
-\b \cf2 {\listtext	\'95	}What is the callback between imagePickerController and timelineViewController?\
+\b \cf0 {\listtext	\'95	}What is the callback between imagePickerController and timelineViewController?\
 \pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
 \ls3\ilvl1
-\b0 \cf2 {\listtext	\uc0\u8259 	}
+\b0 \cf0 {\listtext	\uc0\u8259 	}
 \b PTH line 12: 
 \b0 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 a function of type PhotoTakingHelperCallback has one parameter (a UIImage?) and returns Void. This means that any function that wants to be the callback of the PhotoTakingHelper needs to have exactly this signature.\kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+a function of type PhotoTakingHelperCallback has one parameter (a UIImage?) and returns Void. This means that any function that wants to be the callback of the PhotoTakingHelper needs to have exactly this signature.\kerning1\expnd0\expndtw0 \
 {\listtext	\uc0\u8259 	}
 \b 24:
 \b0  PhotoTakingHelper object has a callback?\
 {\listtext	\uc0\u8259 	}
 \b 28, 30: 
-\b0\fs22 \cf0 \CocoaLigature0  \cf3 The initializer of this class receives the view controller on which we will present other view controllers and the callback that we will call as soon as a user has picked an image.
-\fs24 \cf2 \CocoaLigature1 \
+\b0\fs22 \CocoaLigature0  \cf2 The initializer of this class receives the view controller on which we will present other view controllers and the callback that we will call as soon as a user has picked an image.
+\fs24 \cf0 \CocoaLigature1 \
 {\listtext	\uc0\u8259 	}93\
 {\listtext	\uc0\u8259 	}
 \b TVC line 34:
 \b0  \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 When initializing the PhotoTakingHelper inside of the 
+When initializing the PhotoTakingHelper inside of the 
 \i TimelineViewController
 \i0  we will provide it with a callback function. As soon as the PhotoTakingHelper has selected an image, it will call that 
 \i callback
 \i0  function and provide the selected image to the 
 \i TimelineViewController
-\i0 .\kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\i0 .\kerning1\expnd0\expndtw0 \
 \pard\tx720\pardeftab720\sl280\partightenfactor0
 \cf0 \
 \pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
 \ls4\ilvl0\cf0 {\listtext	\'95	}PhotoTakingHelper showImagePickerController function: \
 \pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl280\partightenfactor0
 \ls4\ilvl1\cf0 {\listtext	\uc0\u8259 	}
-\f1\fs22 \cf3 \CocoaLigature0 Sign up phototakinghelper to become the delegate of the UIImagePickerController, because The UIImagePickerController allows a delegate to listen for selected images and other events. I understand why By being the delegate of a UIImagePickerController we are required to implement the UIImagePickerControllerDelegate protocol, but 
+\f1\fs22 \cf2 \CocoaLigature0 Sign up phototakinghelper to become the delegate of the UIImagePickerController, because The UIImagePickerController allows a delegate to listen for selected images and other events. I understand why By being the delegate of a UIImagePickerController we are required to implement the UIImagePickerControllerDelegate protocol, but 
 \f0\fs24 \cf0 \CocoaLigature1 why do we need to implement
-\fs22 \cf3 \CocoaLigature0  UINavigationControllerDelegate.  
+\fs22 \cf2 \CocoaLigature0  UINavigationControllerDelegate.  
 \fs24 \cf0 \CocoaLigature1 ?\
 \pard\tx720\tx1440\pardeftab720\sl280\partightenfactor0
 \cf0 \
+Why do we guard in uploadPost\
 }

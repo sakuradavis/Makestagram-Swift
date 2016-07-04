@@ -26,24 +26,14 @@ class TimelineViewController: UIViewController {
         //Within the takePhoto method we're creating an instance of PhotoTakingHelper. We're assigning that instance to the photoTakingHelper property. The initializer of the PhotoTakingHelper takes two parameters: the view controller on which the popup should be presented and the callback that should run as soon as a photo has been selected
         
         photoTakingHelper = PhotoTakingHelper(viewController: self.tabBarController!,
-                                              
             //Provide callback for when photo is selected
             //As a callback we pass a closure. A closure is basically a function without a name.
             //Trailing closures can be used whenever the last argument of a function or initializer is a closure.
 
             callback: { (image: UIImage?) in
-                if let image = image {
-                    //We turn the UIImage into an NSData instance because the PFFile class needs an NSData argument for its initializer.
-                    let imageData = UIImageJPEGRepresentation(image, 0.8)!
-                    //Next we create and save the PFFile.
-                    //takes the optional returned from the PFFile constructor, and force unwraps it.
-                    let imageFile = PFFile(name: "image.jpg", data: imageData)!
-                    
-                    //create a PFObject of type post. We assign the "imageFile" to this post and then save it as well.
-                    let post = PFObject(className: "Post")
-                    post["imageFile"] = imageFile
-                    post.saveInBackground()
-                }
+                let post = Post()
+                post.image = image
+                post.uploadPost()
             }
         )
     }
