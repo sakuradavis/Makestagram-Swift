@@ -9,22 +9,23 @@
 import Foundation
 import Parse
 
-// 1
+// To create a custom Parse class you need to inherit from PFObject and implement the PFSubclassing protocol
 class Post : PFObject, PFSubclassing {
     
-    // 2
+    //each property that you want to access on this Parse class (Post): imageFile and user
+    // NSManaged tells the Swift compiler that we won't initialize the properties in the initializer, because Parse will take care of it for us.
     @NSManaged var imageFile: PFFile?
     @NSManaged var user: PFUser?
     
     
     //MARK: PFSubclassing Protocol
     
-    // 3
+    // By implementing the parseClassName static function, you create a connection between the Parse class and your Swift class.
     static func parseClassName() -> String {
         return "Post"
     }
     
-    // 4
+    // init and initialize are purely boilerplate code - copy these two into any custom Parse class that you're creating.
     override init () {
         super.init()
     }
