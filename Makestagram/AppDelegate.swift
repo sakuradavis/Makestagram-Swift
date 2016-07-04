@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Make School. All rights reserved.
 //
 
+//These actions (starting, going into the background, and closing), are referred to as lifecycle events. Whenever we want to respond to such events, the AppDelegate is the right place to add our code
+
 import UIKit
 import Parse
 
@@ -14,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    //Configure and initialize Parse into the application
+    //This method is called as soon as our app starts - this is where we need to add the code to configure the Parse.
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Set up the Parse SDK
