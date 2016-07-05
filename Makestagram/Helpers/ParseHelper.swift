@@ -14,29 +14,53 @@ import Parse
 //We are going to wrap all of our helper methods into a class called ParseHelper (call ParseHelper.____)
 class ParseHelper {
     
+    //CONSTANTS Parse[ClassName][FieldName].
+    // Following Relation
+    static let ParseFollowClass       = "Follow"
+    static let ParseFollowFromUser    = "fromUser"
+    static let ParseFollowToUser      = "toUser"
+    
+    // Like Relation
+    static let ParseLikeClass         = "Like"
+    static let ParseLikeToPost        = "toPost"
+    static let ParseLikeFromUser      = "fromUser"
+    
+    // Post Relation
+    static let ParsePostUser          = "user"
+    static let ParsePostCreatedAt     = "createdAt"
+    
+    // Flagged Content Relation
+    static let ParseFlaggedContentClass    = "FlaggedContent"
+    static let ParseFlaggedContentFromUser = "fromUser"
+    static let ParseFlaggedContentToPost   = "toPost"
+    
+    // User Relation
+    static let ParseUserUsername      = "username"
+    
+    
     //Static: we can call it without having to create an instance of ParseHelper - you should do that for all helper methods.
     //Takes completionBlock: the callback block that should be called once the query has completed. The type of this parameter is PFQueryArrayResultBlock.  By taking this callback as a parameter, we can call any Parse method and return the result of the method to that completionBlock.
     
     static func timelineRequestForCurrentUser(completionBlock: PFQueryArrayResultBlock) {
         
         //Creating the query that fetches the Follow relationships for the current user.
-        let followingQuery = PFQuery(className: "Follow")
-        followingQuery.whereKey("fromUser", equalTo:PFUser.currentUser()!)
-        
+        let followingQuery = PFQuery(className: ParseFollowClass)
+        followingQuery.whereKey(ParseFollowFromUser, equalTo:PFUser.currentUser()!)
+
         //use that query to fetch any posts that are created by users that the current user is following.
         let postsFromFollowedUsers = Post.query()
-        postsFromFollowedUsers!.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
-        
+        postsFromFollowedUsers!.whereKey(ParsePostUser, matchesKey: ParseFollowToUser, inQuery: followingQuery)
+ 
         // another query to retrieve all posts that the current user has posted.
         let postsFromThisUser = Post.query()
-        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
-        
+        postsFromThisUser!.whereKey(ParsePostUser, equalTo: PFUser.currentUser()!)
+ 
         //create a combined query of the 2. and 3. queries using the orQueryWithSubqueries method.
         let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
         //Know user for all posts
-        query.includeKey("user")
+        query.includeKey(ParsePostUser)
         //chronological order.
-        query.orderByDescending("createdAt")
+        query.orderByDescending(ParsePostCreatedAt)
         
         //Instead of providing a closure and handling the results of the query within this method, we hand off the results to the closure that has been handed to use through the completionBlock parameter. This means whoever calls the timelineRequestForCurrentUser method will be able to handle the result returned from the query!
         query.findObjectsInBackgroundWithBlock(completionBlock)
