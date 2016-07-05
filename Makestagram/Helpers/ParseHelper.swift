@@ -116,3 +116,15 @@ class ParseHelper {
     }
     
 }
+
+extension PFObject {
+    //Now Swift knows to consider any two Parse objects equal if they have the same objectId.
+    public override func isEqual(object: AnyObject?) -> Bool {
+        if (object as? PFObject)?.objectId == self.objectId {
+            return true
+        } else {
+            return super.isEqual(object)
+        }
+    }
+    
+}
