@@ -42,6 +42,17 @@ class TimelineViewController: UIViewController {
         query.findObjectsInBackgroundWithBlock {(result: [PFObject]?, error: NSError?) -> Void in
             //Cast result [PFObject] to [Post] or store an empty array ([]) in self.posts.
             self.posts = result as? [Post] ?? []
+            //For all posts...
+            for post in self.posts {
+                do {
+                    //download imageFile
+                    let data = try post.imageFile?.getData()
+                    //turn it from NSData into a UIImage, store in image property of post.
+                    post.image = UIImage(data: data!, scale:1.0)
+                } catch {
+                    print("could not get image")
+                }
+            }
             // Refresh
             self.tableView.reloadData()
         }
@@ -82,8 +93,6 @@ class TimelineViewController: UIViewController {
 
 
 
-
-
 // MARK: Tab Bar Delegate
 //Using this method the tab bar view controller asks its delegate whether or not it should present the view controller that belongs to the tab bar item that the user just tapped.
 //The protocol method requires us to return a boolean value. If we return true the tab bar will present the view controller that the user has selected. If we return false the view controller will not be displayed - exactly the behavior that we want for the Photo Tab Bar Item.
@@ -111,10 +120,10 @@ extension TimelineViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //For now we return a simple placeholder cell with the title "Post" 
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell")!
-        
-        cell.textLabel!.text = "Post"
+        //cast cell to our custom class PostTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostTableViewCell
+        //Using the postImageView property of our custom cell we can now decide which image should be displayed in the cell.
+        cell.postImageView.image = posts[indexPath.row].image
         
         return cell
     }

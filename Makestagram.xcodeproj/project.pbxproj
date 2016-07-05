@@ -38,6 +38,7 @@
 		BD9F988D1D26ECDB006DDB97 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F988C1D26ECDB006DDB97 /* PhotoViewController.swift */; };
 		BD9F988F1D26ED28006DDB97 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F988E1D26ED28006DDB97 /* FriendSearchViewController.swift */; };
 		BD9F98931D26F375006DDB97 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F98921D26F375006DDB97 /* PhotoTakingHelper.swift */; };
+		BDBE59DA1D2B457900E22B77 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE59D91D2B457900E22B77 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		BD9F988C1D26ECDB006DDB97 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		BD9F988E1D26ED28006DDB97 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		BD9F98921D26F375006DDB97 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTakingHelper.swift; sourceTree = "<group>"; };
+		BDBE59D91D2B457900E22B77 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		62C8C1E21B06BD6500DC3EA7 /* Makestagram */ = {
 			isa = PBXGroup;
 			children = (
+				BDBE59D81D2B454500E22B77 /* Timeline */,
 				BD8CA6E31D2A12BC000E8CF8 /* Models */,
 				BD9F98911D26F312006DDB97 /* PhotoTaking */,
 				6277189C1B0A58E800AF5C6E /* Helpers */,
@@ -282,6 +285,14 @@
 				BD9F98921D26F375006DDB97 /* PhotoTakingHelper.swift */,
 			);
 			path = PhotoTaking;
+			sourceTree = "<group>";
+		};
+		BDBE59D81D2B454500E22B77 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				BDBE59D91D2B457900E22B77 /* PostTableViewCell.swift */,
+			);
+			path = Timeline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,6 +514,7 @@
 				BD9F988D1D26ECDB006DDB97 /* PhotoViewController.swift in Sources */,
 				62C8C1E61B06BD6500DC3EA7 /* AppDelegate.swift in Sources */,
 				627718971B0A581700AF5C6E /* FilterViewController.swift in Sources */,
+				BDBE59DA1D2B457900E22B77 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
