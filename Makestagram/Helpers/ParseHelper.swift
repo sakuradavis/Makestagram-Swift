@@ -8,6 +8,8 @@
 
 import Foundation
 import Parse
+import Range
+
 
 //We're going to introduce a ParseHelper.swift file that will contain most of our code that's responsible for talking to our Parse server. That way we can avoid bloated view controllers.
 
@@ -44,8 +46,8 @@ class ParseHelper {
     
     //Static: we can call it without having to create an instance of ParseHelper - you should do that for all helper methods.
     //Takes completionBlock: the callback block that should be called once the query has completed. The type of this parameter is PFQueryArrayResultBlock.  By taking this callback as a parameter, we can call any Parse method and return the result of the method to that completionBlock.
-    
-    static func timelineRequestForCurrentUser(completionBlock: PFQueryArrayResultBlock) {
+    //Range argument will define which portions of the timeline will be loaded. Range literals can be defined like this: 5..10 (10 included) or 5..<10 (10 excluded).
+    static func timelineRequestForCurrentUser(range: Range<Int>, completionBlock: PFQueryArrayResultBlock) {
         
         //Creating the query that fetches the Follow relationships for the current user.
         let followingQuery = PFQuery(className: ParseFollowClass)
@@ -66,6 +68,11 @@ class ParseHelper {
         //chronological order.
         query.orderByDescending(ParsePostCreatedAt)
         
+        //PFQuery provides a skip property. That allows us - as suspected by the name - to define how many elements that match our query shall be skipped.
+        query.skip = range.startIndex
+        //The limit property defines how many elements we want to load. We calculate the size of the range (by subtracting the startIndex from the endIndex) and pass the result to the limit property.
+        query.limit = range.endIndex - range.startIndex
+
         //Instead of providing a closure and handling the results of the query within this method, we hand off the results to the closure that has been handed to use through the completionBlock parameter. This means whoever calls the timelineRequestForCurrentUser method will be able to handle the result returned from the query!
         query.findObjectsInBackgroundWithBlock(completionBlock)
         print("found timeline posts")
