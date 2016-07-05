@@ -192,6 +192,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="hvV-tA-BOU" id="piD-Gp-1nO"/>
+                                    <outlet property="delegate" destination="hvV-tA-BOU" id="pHS-Hh-efd"/>
                                 </connections>
                             </tableView>
                         </subviews>
