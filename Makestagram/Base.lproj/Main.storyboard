@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Photo View Controller-->
@@ -59,23 +60,115 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="320" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B9e-uD-zZu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="470" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B9e-uD-zZu">
                                 <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="320" id="NXM-sD-0K3" customClass="PostTableViewCell" customModule="Makestagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="320"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="470" id="NXM-sD-0K3" customClass="PostTableViewCell" customModule="Makestagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="470"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NXM-sD-0K3" id="IX3-I2-42N">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="469"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCF-bh-Blu">
-                                                    <rect key="frame" x="24" y="8" width="552" height="303"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCF-bh-Blu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="344"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="344" id="EIq-A4-Zvv"/>
+                                                    </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="RTb-3G-Ftg" userLabel="Likes">
+                                                    <rect key="frame" x="20" y="377" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="2Sp-d6-JG0"/>
+                                                        <constraint firstAttribute="width" constant="20" id="ier-i0-SeN"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzz-Hm-Pnf" userLabel="More Button">
+                                                    <rect key="frame" x="8" y="417" width="20" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="14X-Vj-PLI"/>
+                                                        <constraint firstAttribute="height" constant="44" id="41G-Or-ZJ6"/>
+                                                        <constraint firstAttribute="width" constant="44" id="5ru-VC-p58"/>
+                                                        <constraint firstAttribute="width" constant="44" id="LGK-Pl-kc7"/>
+                                                        <constraint firstAttribute="width" constant="20" id="jax-5g-HAP"/>
+                                                        <constraint firstAttribute="height" constant="44" id="wBp-DB-uTp"/>
+                                                    </constraints>
+                                                    <state key="normal" image="more"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="14X-Vj-PLI"/>
+                                                            <exclude reference="41G-Or-ZJ6"/>
+                                                            <exclude reference="LGK-Pl-kc7"/>
+                                                            <exclude reference="jax-5g-HAP"/>
+                                                        </mask>
+                                                    </variation>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cia-4p-Fmz" userLabel="Like Button">
+                                                    <rect key="frame" x="544" y="401" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="5zh-NH-xbe"/>
+                                                        <constraint firstAttribute="height" constant="44" id="t1Q-8Z-cuD"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                                    <state key="normal" image="heart"/>
+                                                    <state key="selected" image="heart_selected"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test User" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiQ-LZ-6Ak">
+                                                    <rect key="frame" x="57" y="377" width="104" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="ykO-hY-zuz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="0XL-es-Mjz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Cia-4p-Fmz" secondAttribute="trailing" constant="4" id="1y7-8W-YJ0"/>
+                                                <constraint firstItem="OCF-bh-Blu" firstAttribute="top" secondItem="IX3-I2-42N" secondAttribute="top" id="JZT-nP-Vx3"/>
+                                                <constraint firstItem="OCF-bh-Blu" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leading" id="Qiw-s4-uNd"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" id="SET-uv-ULs"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="UiQ-LZ-6Ak" secondAttribute="bottom" constant="20" id="Sva-e0-qRU"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="TLK-YV-gFJ"/>
+                                                <constraint firstItem="UiQ-LZ-6Ak" firstAttribute="leading" secondItem="RTb-3G-Ftg" secondAttribute="trailing" constant="20" id="UXu-7o-BOu"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Cia-4p-Fmz" secondAttribute="bottom" constant="16" id="Yrn-20-J5L"/>
+                                                <constraint firstAttribute="trailing" secondItem="OCF-bh-Blu" secondAttribute="trailing" id="Z6O-T3-x1t"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="bottom" secondItem="IX3-I2-42N" secondAttribute="bottomMargin" constant="10" id="bGd-Cy-KEs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="UiQ-LZ-6Ak" secondAttribute="trailing" constant="50" id="daM-4G-6ff"/>
+                                                <constraint firstItem="RTb-3G-Ftg" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" constant="12" id="eUJ-Vo-3bg"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" id="fg5-OC-7yP"/>
+                                                <constraint firstItem="RTb-3G-Ftg" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" constant="12" id="hQa-OX-0dm"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="lfZ-l1-YSs"/>
+                                                <constraint firstItem="UiQ-LZ-6Ak" firstAttribute="leading" secondItem="RTb-3G-Ftg" secondAttribute="trailing" constant="20" id="nkP-k0-D1w"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fzz-Hm-Pnf" secondAttribute="bottom" id="qlG-64-kFE"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="UiQ-LZ-6Ak" secondAttribute="bottom" constant="20" id="qrY-yC-cg8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="UiQ-LZ-6Ak" secondAttribute="trailing" constant="50" id="rLw-gy-4aC"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="JZT-nP-Vx3"/>
+                                                    <exclude reference="Qiw-s4-uNd"/>
+                                                    <exclude reference="Z6O-T3-x1t"/>
+                                                    <exclude reference="hQa-OX-0dm"/>
+                                                    <exclude reference="nkP-k0-D1w"/>
+                                                    <exclude reference="rLw-gy-4aC"/>
+                                                    <exclude reference="0XL-es-Mjz"/>
+                                                    <exclude reference="fg5-OC-7yP"/>
+                                                    <exclude reference="lfZ-l1-YSs"/>
+                                                    <exclude reference="qlG-64-kFE"/>
+                                                    <exclude reference="qrY-yC-cg8"/>
+                                                    <exclude reference="1y7-8W-YJ0"/>
+                                                    <exclude reference="Yrn-20-J5L"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="likeButton" destination="Cia-4p-Fmz" id="VyY-t7-zNY"/>
+                                            <outlet property="likesIconImageView" destination="RTb-3G-Ftg" id="Mg9-bG-k4X"/>
+                                            <outlet property="likesLabel" destination="UiQ-LZ-6Ak" id="6Eh-ce-c5z"/>
+                                            <outlet property="moreButton" destination="fzz-Hm-Pnf" id="VRp-i5-HbX"/>
                                             <outlet property="postImageView" destination="OCF-bh-Blu" id="HYF-9p-sUO"/>
                                         </connections>
                                     </tableViewCell>
@@ -126,7 +219,10 @@
     </scenes>
     <resources>
         <image name="camera" width="40" height="30"/>
+        <image name="heart" width="72" height="68"/>
+        <image name="heart_selected" width="72" height="68"/>
         <image name="home" width="38" height="36"/>
+        <image name="more" width="26" height="17"/>
         <image name="people" width="42" height="42"/>
     </resources>
 </document>
