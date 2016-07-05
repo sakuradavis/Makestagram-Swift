@@ -8,6 +8,7 @@
 
 import Foundation
 import Parse
+import Bond
 
 // To create a custom Parse class you need to inherit from PFObject and implement the PFSubclassing protocol
 class Post : PFObject, PFSubclassing {
@@ -17,14 +18,34 @@ class Post : PFObject, PFSubclassing {
     @NSManaged var imageFile: PFFile?
     @NSManaged var user: PFUser?
     
+    //MARK: PFSubclassing Protocol
+    // By implementing the parseClassName static function, you create a connection between the Parse class and your Swift class.
+    static func parseClassName() -> String {
+        return "Post"
+    }
     
-    var image: UIImage?
+    // init and initialize are purely boilerplate code - copy these two into any custom Parse class that you're creating.
+    override init () {
+        super.init()
+    }
+    
+    override class func initialize() {
+        var onceToken : dispatch_once_t = 0;
+        dispatch_once(&onceToken) {
+            // inform Parse about this subclass
+            self.registerSubclass()
+        }
+    }
+    
+    
+    //The Observable wrapper enables us to use the property together with bindings.
+    var image: Observable<UIImage?> = Observable(nil)
     
     //Let's request some extra time for our photo upload.
     var photoUploadTask: UIBackgroundTaskIdentifier?
     
     func uploadPost() {
-        if let image = image {
+        if let image = image.value {
             //When the uploadPost method is called, we grab the photo to be uploaded from the image property; turn it into a PFFile called imageFile.
 
             //We turn the UIImage into an NSData instance because the PFFile class needs an NSData argument for its initializer.
@@ -56,23 +77,18 @@ class Post : PFObject, PFSubclassing {
         }
     }
     
-    //MARK: PFSubclassing Protocol
     
-    // By implementing the parseClassName static function, you create a connection between the Parse class and your Swift class.
-    static func parseClassName() -> String {
-        return "Post"
-    }
-    
-    // init and initialize are purely boilerplate code - copy these two into any custom Parse class that you're creating.
-    override init () {
-        super.init()
-    }
-    
-    override class func initialize() {
-        var onceToken : dispatch_once_t = 0;
-        dispatch_once(&onceToken) {
-            // inform Parse about this subclass
-            self.registerSubclass()
+    func downloadImage() {
+        // if image is not downloaded yet, get it
+        if (image.value == nil) {
+            // Instead of using getData we are using getDataInBackgroundWithBlock - that way we are no longer blocking the main thread
+            imageFile?.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
+                if let data = data {
+                    let image = UIImage(data: data, scale:1.0)!
+                    //Once the download completes, we update the post.image
+                    self.image.value = image
+                }
+            }
         }
     }
     
