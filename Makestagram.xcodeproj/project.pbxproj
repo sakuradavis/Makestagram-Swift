@@ -39,6 +39,7 @@
 		BD9F988F1D26ED28006DDB97 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F988E1D26ED28006DDB97 /* FriendSearchViewController.swift */; };
 		BD9F98931D26F375006DDB97 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9F98921D26F375006DDB97 /* PhotoTakingHelper.swift */; };
 		BDBE59DA1D2B457900E22B77 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE59D91D2B457900E22B77 /* PostTableViewCell.swift */; };
+		BDBE59DC1D2B483600E22B77 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE59DB1D2B483600E22B77 /* ParseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		BD9F988E1D26ED28006DDB97 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		BD9F98921D26F375006DDB97 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTakingHelper.swift; sourceTree = "<group>"; };
 		BDBE59D91D2B457900E22B77 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		BDBE59DB1D2B483600E22B77 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 			children = (
 				6277189D1B0A58E800AF5C6E /* ErrorHandling.swift */,
 				6277189E1B0A58E800AF5C6E /* ParseLoginHelper.swift */,
+				BDBE59DB1D2B483600E22B77 /* ParseHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				BD9F988D1D26ECDB006DDB97 /* PhotoViewController.swift in Sources */,
 				62C8C1E61B06BD6500DC3EA7 /* AppDelegate.swift in Sources */,
 				627718971B0A581700AF5C6E /* FilterViewController.swift in Sources */,
+				BDBE59DC1D2B483600E22B77 /* ParseHelper.swift in Sources */,
 				BDBE59DA1D2B457900E22B77 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

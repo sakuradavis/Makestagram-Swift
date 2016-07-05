@@ -19,29 +19,14 @@ class TimelineViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //Creating the query that fetches the Follow relationships for the current user.
-        let followingQuery = PFQuery(className: "Follow")
-        followingQuery.whereKey("fromUser", equalTo:PFUser.currentUser()!)
-        
-        //use that query to fetch any posts that are created by users that the current user is following.
-        let postsFromFollowedUsers = Post.query()
-        postsFromFollowedUsers!.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
-        
-        // another query to retrieve all posts that the current user has posted.
-        let postsFromThisUser = Post.query()
-        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
-        
-        //create a combined query of the 2. and 3. queries using the orQueryWithSubqueries method.
-        let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
-        //Know user for all posts
-        query.includeKey("user")
-        //chronological order.
-        query.orderByDescending("createdAt")
         
         //We kick off the network request.
-        query.findObjectsInBackgroundWithBlock {(result: [PFObject]?, error: NSError?) -> Void in
+        ParseHelper.timelineRequestForCurrentUser {
+            (result: [PFObject]?, error: NSError?) -> Void in
+            
             //Cast result [PFObject] to [Post] or store an empty array ([]) in self.posts.
             self.posts = result as? [Post] ?? []
+           
             //For all posts...
             for post in self.posts {
                 do {
@@ -53,7 +38,7 @@ class TimelineViewController: UIViewController {
                     print("could not get image")
                 }
             }
-            // Refresh
+            //Refresh!
             self.tableView.reloadData()
         }
     }
