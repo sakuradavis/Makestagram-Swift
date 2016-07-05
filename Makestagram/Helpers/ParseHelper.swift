@@ -68,6 +68,8 @@ class ParseHelper {
         
         //Instead of providing a closure and handling the results of the query within this method, we hand off the results to the closure that has been handed to use through the completionBlock parameter. This means whoever calls the timelineRequestForCurrentUser method will be able to handle the result returned from the query!
         query.findObjectsInBackgroundWithBlock(completionBlock)
+        print("found timeline posts")
+
     }
     
     //MARK: LIKES
@@ -79,6 +81,8 @@ class ParseHelper {
         likeObject[ParseLikeToPost] = post
         
         likeObject.saveInBackgroundWithBlock(nil)
+        print("created new like object")
+
     }
     
     //find like and delete
@@ -93,6 +97,7 @@ class ParseHelper {
             if let results = results {
                 for like in results {
                     like.deleteInBackgroundWithBlock(nil)
+                    print("found like, deleting")
                 }
             }
         }
@@ -107,7 +112,7 @@ class ParseHelper {
         query.includeKey(ParseLikeFromUser)
         //hand off the results to the closure that has been handed to use through the completionBlock parameter. This means whoever calls the method will be able to handle the result returned from the query!
         query.findObjectsInBackgroundWithBlock(completionBlock)
-        
+        print("Parse did query for all likes for post")
     }
     
 }

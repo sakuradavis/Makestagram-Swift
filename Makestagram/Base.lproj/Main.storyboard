@@ -71,21 +71,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="469"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCF-bh-Blu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OCF-bh-Blu">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="344"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="344" id="EIq-A4-Zvv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="RTb-3G-Ftg" userLabel="Likes">
-                                                    <rect key="frame" x="20" y="377" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="RTb-3G-Ftg" userLabel="Likes">
+                                                    <rect key="frame" x="20" y="387" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="2Sp-d6-JG0"/>
                                                         <constraint firstAttribute="width" constant="20" id="ier-i0-SeN"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzz-Hm-Pnf" userLabel="More Button">
-                                                    <rect key="frame" x="8" y="417" width="20" height="44"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzz-Hm-Pnf" userLabel="More Button">
+                                                    <rect key="frame" x="8" y="427" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="14X-Vj-PLI"/>
                                                         <constraint firstAttribute="height" constant="44" id="41G-Or-ZJ6"/>
@@ -103,8 +103,11 @@
                                                             <exclude reference="jax-5g-HAP"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="moreButtonTapped:" destination="NXM-sD-0K3" eventType="touchUpInside" id="2LQ-iY-4sw"/>
+                                                    </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cia-4p-Fmz" userLabel="Like Button">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cia-4p-Fmz" userLabel="Like Button">
                                                     <rect key="frame" x="544" y="401" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="5zh-NH-xbe"/>
@@ -113,9 +116,12 @@
                                                     <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                                     <state key="normal" image="heart"/>
                                                     <state key="selected" image="heart_selected"/>
+                                                    <connections>
+                                                        <action selector="likeButtonTapped:" destination="NXM-sD-0K3" eventType="touchUpInside" id="G1n-Ih-hdY"/>
+                                                    </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test User" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiQ-LZ-6Ak">
-                                                    <rect key="frame" x="57" y="377" width="104" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test User" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiQ-LZ-6Ak">
+                                                    <rect key="frame" x="60" y="386" width="482" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="ykO-hY-zuz"/>
                                                     </constraints>
@@ -125,13 +131,18 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Cia-4p-Fmz" secondAttribute="bottom" constant="16" id="0Ew-2d-kXO"/>
                                                 <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="0XL-es-Mjz"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Cia-4p-Fmz" secondAttribute="trailing" constant="4" id="1y7-8W-YJ0"/>
+                                                <constraint firstAttribute="trailing" secondItem="OCF-bh-Blu" secondAttribute="trailing" id="3QU-0a-UqQ"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="8Xt-eE-4EM"/>
+                                                <constraint firstItem="UiQ-LZ-6Ak" firstAttribute="leading" secondItem="RTb-3G-Ftg" secondAttribute="trailing" constant="20" id="BpL-zv-9Cp"/>
                                                 <constraint firstItem="OCF-bh-Blu" firstAttribute="top" secondItem="IX3-I2-42N" secondAttribute="top" id="JZT-nP-Vx3"/>
                                                 <constraint firstItem="OCF-bh-Blu" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leading" id="Qiw-s4-uNd"/>
                                                 <constraint firstItem="fzz-Hm-Pnf" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" id="SET-uv-ULs"/>
                                                 <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="UiQ-LZ-6Ak" secondAttribute="bottom" constant="20" id="Sva-e0-qRU"/>
                                                 <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="TLK-YV-gFJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Cia-4p-Fmz" secondAttribute="trailing" constant="4" id="UPj-5i-wo9"/>
                                                 <constraint firstItem="UiQ-LZ-6Ak" firstAttribute="leading" secondItem="RTb-3G-Ftg" secondAttribute="trailing" constant="20" id="UXu-7o-BOu"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Cia-4p-Fmz" secondAttribute="bottom" constant="16" id="Yrn-20-J5L"/>
                                                 <constraint firstAttribute="trailing" secondItem="OCF-bh-Blu" secondAttribute="trailing" id="Z6O-T3-x1t"/>
@@ -139,6 +150,9 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="UiQ-LZ-6Ak" secondAttribute="trailing" constant="50" id="daM-4G-6ff"/>
                                                 <constraint firstItem="RTb-3G-Ftg" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" constant="12" id="eUJ-Vo-3bg"/>
                                                 <constraint firstItem="fzz-Hm-Pnf" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" id="fg5-OC-7yP"/>
+                                                <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="UiQ-LZ-6Ak" secondAttribute="bottom" constant="20" id="g8R-wu-BwJ"/>
+                                                <constraint firstItem="OCF-bh-Blu" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leading" id="gN3-2v-ptF"/>
+                                                <constraint firstItem="OCF-bh-Blu" firstAttribute="top" secondItem="IX3-I2-42N" secondAttribute="top" id="gsa-F2-2Ae"/>
                                                 <constraint firstItem="RTb-3G-Ftg" firstAttribute="leading" secondItem="IX3-I2-42N" secondAttribute="leadingMargin" constant="12" id="hQa-OX-0dm"/>
                                                 <constraint firstItem="fzz-Hm-Pnf" firstAttribute="top" secondItem="RTb-3G-Ftg" secondAttribute="bottom" constant="20" id="lfZ-l1-YSs"/>
                                                 <constraint firstItem="UiQ-LZ-6Ak" firstAttribute="leading" secondItem="RTb-3G-Ftg" secondAttribute="trailing" constant="20" id="nkP-k0-D1w"/>
@@ -152,9 +166,12 @@
                                                     <exclude reference="Qiw-s4-uNd"/>
                                                     <exclude reference="Z6O-T3-x1t"/>
                                                     <exclude reference="hQa-OX-0dm"/>
+                                                    <exclude reference="UXu-7o-BOu"/>
                                                     <exclude reference="nkP-k0-D1w"/>
                                                     <exclude reference="rLw-gy-4aC"/>
                                                     <exclude reference="0XL-es-Mjz"/>
+                                                    <exclude reference="Sva-e0-qRU"/>
+                                                    <exclude reference="TLK-YV-gFJ"/>
                                                     <exclude reference="fg5-OC-7yP"/>
                                                     <exclude reference="lfZ-l1-YSs"/>
                                                     <exclude reference="qlG-64-kFE"/>

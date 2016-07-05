@@ -113,6 +113,9 @@ extension TimelineViewController: UITableViewDataSource {
         
         // Directly before a post will be displayed, we trigger the image download.
         post.downloadImage()
+        //fetch likes
+        post.fetchLikes()
+        print("about to fetch likes lazily!")
         //assign the post that shall be displayed to the post property
         cell.post = post
         
