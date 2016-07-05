@@ -19,6 +19,7 @@ class TimelineViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        //We no longer want to download all images immediately after the timeline query completes, instead we want to load them lazily as soon as a post is displayed.
         
         //We kick off the network request.
         ParseHelper.timelineRequestForCurrentUser {
@@ -27,17 +28,18 @@ class TimelineViewController: UIViewController {
             //Cast result [PFObject] to [Post] or store an empty array ([]) in self.posts.
             self.posts = result as? [Post] ?? []
            
-            //For all posts...
-            for post in self.posts {
-                do {
-                    //download imageFile
-                    let data = try post.imageFile?.getData()
-                    //turn it from NSData into a UIImage, store in image property of post.
-                    post.image = UIImage(data: data!, scale:1.0)
-                } catch {
-                    print("could not get image")
-                }
-            }
+//            //For all posts...
+//            for post in self.posts {
+//                do {
+//                    //download imageFile
+//                    let data = try post.imageFile?.getData()
+//                    //turn it from NSData into a UIImage, store in image property of post.
+//                    post.image = UIImage(data: data!, scale:1.0)
+//                } catch {
+//                    print("could not get image")
+//                }
+//            }
+            
             //Refresh!
             self.tableView.reloadData()
         }
@@ -65,7 +67,7 @@ class TimelineViewController: UIViewController {
 
             callback: { (image: UIImage?) in
                 let post = Post()
-                post.image = image
+                post.image.value = image
                 post.uploadPost()
             }
         )
@@ -107,9 +109,17 @@ extension TimelineViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //cast cell to our custom class PostTableViewCell
         let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostTableViewCell
-        //Using the postImageView property of our custom cell we can now decide which image should be displayed in the cell.
-        cell.postImageView.image = posts[indexPath.row].image
+        let post = posts[indexPath.row]
+        
+        // Directly before a post will be displayed, we trigger the image download.
+        post.downloadImage()
+        //assign the post that shall be displayed to the post property
+        cell.post = post
         
         return cell
+        
+//        //Using the postImageView property of our custom cell we can now decide which image should be displayed in the cell.
+//        cell.postImageView.image = posts[indexPath.row].image
+//        return cell
     }
 }
