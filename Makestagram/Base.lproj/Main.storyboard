@@ -58,7 +58,19 @@
                     <view key="view" contentMode="scaleToFill" id="oob-Dl-SLm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B9e-uD-zZu">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PLR-n6-fyy" firstAttribute="top" secondItem="B9e-uD-zZu" secondAttribute="bottom" id="2FR-Z2-H2t"/>
+                            <constraint firstItem="B9e-uD-zZu" firstAttribute="top" secondItem="vi8-rp-rbY" secondAttribute="bottom" id="7MI-oN-Won"/>
+                            <constraint firstItem="B9e-uD-zZu" firstAttribute="leading" secondItem="oob-Dl-SLm" secondAttribute="leading" id="edd-wd-oph"/>
+                            <constraint firstAttribute="trailing" secondItem="B9e-uD-zZu" secondAttribute="trailing" id="kSF-SX-niV"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home" id="52c-hM-tQY">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
