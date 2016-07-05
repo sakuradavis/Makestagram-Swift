@@ -14,7 +14,9 @@ import Parse
 //We are going to wrap all of our helper methods into a class called ParseHelper (call ParseHelper.____)
 class ParseHelper {
     
-    //CONSTANTS Parse[ClassName][FieldName].
+    //MARK: CONSTANTS
+    //Parse[ClassName][FieldName].
+    
     // Following Relation
     static let ParseFollowClass       = "Follow"
     static let ParseFollowFromUser    = "fromUser"
@@ -37,6 +39,8 @@ class ParseHelper {
     // User Relation
     static let ParseUserUsername      = "username"
     
+    
+    //MARK: TIMELINE
     
     //Static: we can call it without having to create an instance of ParseHelper - you should do that for all helper methods.
     //Takes completionBlock: the callback block that should be called once the query has completed. The type of this parameter is PFQueryArrayResultBlock.  By taking this callback as a parameter, we can call any Parse method and return the result of the method to that completionBlock.
@@ -64,6 +68,46 @@ class ParseHelper {
         
         //Instead of providing a closure and handling the results of the query within this method, we hand off the results to the closure that has been handed to use through the completionBlock parameter. This means whoever calls the timelineRequestForCurrentUser method will be able to handle the result returned from the query!
         query.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    //MARK: LIKES
+    
+    //create like object
+    static func likePost(user: PFUser, post: Post) {
+        let likeObject = PFObject(className: ParseLikeClass)
+        likeObject[ParseLikeFromUser] = user
+        likeObject[ParseLikeToPost] = post
+        
+        likeObject.saveInBackgroundWithBlock(nil)
+    }
+    
+    //find like and delete
+    static func unlikePost(user: PFUser, post: Post) {
+        //query to find the like of a given user that belongs to a given post
+        let query = PFQuery(className: ParseLikeClass)
+        query.whereKey(ParseLikeFromUser, equalTo: user)
+        query.whereKey(ParseLikeToPost, equalTo: post)
+        
+        query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
+            //We iterate over all like objects that met our requirements and delete them.
+            if let results = results {
+                for like in results {
+                    like.deleteInBackgroundWithBlock(nil)
+                }
+            }
+        }
+    }
+    
+    //retrieve all likes for a post
+    static func likesForPost(post: Post, completionBlock: PFQueryArrayResultBlock) {
+        //find likes
+        let query = PFQuery(className: ParseLikeClass)
+        query.whereKey(ParseLikeToPost, equalTo: post)
+        //know users
+        query.includeKey(ParseLikeFromUser)
+        //hand off the results to the closure that has been handed to use through the completionBlock parameter. This means whoever calls the method will be able to handle the result returned from the query!
+        query.findObjectsInBackgroundWithBlock(completionBlock)
+        
     }
     
 }

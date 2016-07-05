@@ -37,9 +37,11 @@ class Post : PFObject, PFSubclassing {
         }
     }
     
-    
+    // UPLOAD IN BACKGROUND
+
     //The Observable wrapper enables us to use the property together with bindings.
     var image: Observable<UIImage?> = Observable(nil)
+    
     
     //Let's request some extra time for our photo upload.
     var photoUploadTask: UIBackgroundTaskIdentifier?
@@ -77,6 +79,7 @@ class Post : PFObject, PFSubclassing {
         }
     }
     
+    // DOWNLOAD LAZILY
     
     func downloadImage() {
         // if image is not downloaded yet, get it
@@ -89,6 +92,57 @@ class Post : PFObject, PFSubclassing {
                     self.image.value = image
                 }
             }
+        }
+    }
+    
+    //LIKES
+    
+    //We make the property Observable so that we can listen to changes and update our UI after we've downloaded the likes for a post.
+    var likes: Observable<[PFUser]?> = Observable(nil)
+    
+    //FETCH LIKES
+    func fetchLikes() {
+        //as soon as likes.value has a cached value, we don't need to perform the body of this method
+        if (likes.value != nil) {
+            return
+        }
+        
+        // We fetch the likes for the current Post using the ParseHelper likesForPost method that we created earlier
+        ParseHelper.likesForPost(self, completionBlock: { (likes: [PFObject]?, error: NSError?) -> Void in
+            //The filter method takes a closure and returns an array that only contains the objects from the original array that meet the requirement stated in that closure. (only likes that belong to users that exist)
+            let validLikes = likes?.filter { like in like[ParseHelper.ParseLikeFromUser] != nil }
+            
+            //start with an array of likes and retrieve an array of users.
+            self.likes.value = validLikes?.map { like in
+                let fromUser = like[ParseHelper.ParseLikeFromUser] as! PFUser
+                //Then we assign the result to our likes.value property.
+                return fromUser
+            }
+        })
+    }
+    
+    //HAS USER ALRADY LIKED?
+    func doesUserLikePost(user: PFUser) -> Bool {
+        if let likes = likes.value {
+            return likes.contains(user)
+        } else {
+            return false
+        }
+    }
+    
+    //LIKE/UNLIKE POST
+    func toggleLikePost(user: PFUser) {
+        if (doesUserLikePost(user)) {
+            // if post is liked, unlike it now
+            //Removing the user from the local cache stored in the likes property
+            likes.value = likes.value?.filter { $0 != user }
+            //syncing the change with Parse.
+            ParseHelper.unlikePost(user, post: self)
+        } else {
+            // if this post is not liked yet, like it now
+            //add them to the local cache and then sync the change with Parse.
+            likes.value?.append(user)
+            ParseHelper.likePost(user, post: self)
         }
     }
     
