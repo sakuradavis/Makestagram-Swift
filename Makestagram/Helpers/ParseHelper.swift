@@ -8,7 +8,6 @@
 
 import Foundation
 import Parse
-import Range
 
 
 //We're going to introduce a ParseHelper.swift file that will contain most of our code that's responsible for talking to our Parse server. That way we can avoid bloated view controllers.
